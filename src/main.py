@@ -10,7 +10,6 @@ Last updated on 2012-6-27
 
 import webapp2
 import numpy as np
-import pflib.gaussSeidel
 import pflib.newtonRaphson
 
 

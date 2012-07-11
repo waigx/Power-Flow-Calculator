@@ -13,14 +13,14 @@ import jacobianParaA as jpA
 import nodeVoltageEquations as nve
 import errors
 
-def getJacobianMatrix( G , B , U , UAccu , isPolar=True ):
+def getJacobianMatrix( G , B , U , UAccu , isPolar=False ):
     """Get Jacobian Matrix from original Bus Admittance Matrix
     
     Args:
         G: matrix, Bus Admittance Matrix
         B: matrix,
         U: matrix,
-        isPolar: boolean, (True by default)Indicate whether node-voltage equations are polar form, 
+        isPolar: boolean, (False by default)Indicate whether node-voltage equations are polar form, 
             if False, these equations are rectangular form.
         
     Returns:
