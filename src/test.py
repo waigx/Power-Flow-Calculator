@@ -11,7 +11,7 @@ Last updated on 2012-7-11
 @version: 0.0
 '''
 
-import pflib.newtonRaphson as nr
+import core.newtonRaphson as nr
 import numpy as np
 
 

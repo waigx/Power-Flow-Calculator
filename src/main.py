@@ -10,8 +10,6 @@ Last updated on 2012-6-27
 
 import webapp2
 import numpy as np
-import pflib.newtonRaphson
-
 
 def testCal():
 	a = np.mat ( [ [1,2+3j], [3,5] ], dtype=complex )
