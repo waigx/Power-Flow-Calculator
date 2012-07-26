@@ -11,8 +11,8 @@ Last updated on 2012-7-11
 @version: 0.0
 '''
 
-import core.newtonRaphson as nr
 import numpy as np
+import core.newtonRaphson as nr
 
 
 Y=np.matrix([[  6.250-18.750j   ,-5.000+15.000j ,-1.250+3.750j  ,0              ,0              ],
