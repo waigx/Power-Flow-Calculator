@@ -9,7 +9,12 @@ Last updated on 2012-6-27
 '''
 
 import webapp2
+import jinja2
+import os
 import numpy as np
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 def testCal():
 	a = np.mat ( [ [1,2+3j], [3,5] ], dtype=complex )
@@ -17,30 +22,11 @@ def testCal():
 
 class MainPage(webapp2.RequestHandler):
 	def get(self):
+		
+		index = jinja_environment.get_template('index.html')
+		
 		self.response.headers['Content-Type'] = 'text/html'
-		self.response.write("""
-<html>
-	<head>
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/favicon.ico">
-	</head>
-	<body>
-		""")
-		self.response.write( "<pre><code>"+str(testCal())+"</code></pre>" )
-		self.response.write("""
-		<hr />
-		<table width="100%">
-			<tr valign="top">
-				<td align="left">&copy; Igor Wang</td>
-				<td align="right">
-					<img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" 
-alt="Powered by Google App Engine" />
-				</td>
-			</tr>
-		</table>
-	</body>
-</html>	
-		""")
+		self.response.out.write(index.render())
 
 app = webapp2.WSGIApplication(	[( '/' , MainPage )],
 								debug=True )

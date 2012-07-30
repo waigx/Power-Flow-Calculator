@@ -8,10 +8,14 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
-
+- url: /about\.html
+  static_files: about.html
+  upload: about\.html
 - url: /.*
   script: main.app
 
 libraries:
 - name: numpy
+  version: "latest"
+- name: jinja2
   version: "latest"
