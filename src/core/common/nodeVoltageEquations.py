@@ -9,6 +9,7 @@ Last updated on 2012-7-1
 '''
 
 import numpy as np
+
 from errors import isSameLength
 
 # Rectangular form

@@ -20,7 +20,7 @@ def getJacobianMatrix( G , B , U , UAccu , isPolar=False ):
         G: matrix, Bus Admittance Matrix
         B: matrix,
         U: matrix,
-        isPolar: boolean, (False by default)Indicate whether node-voltage equations are polar form, 
+        isPolar: boolean, (False by default) Indicate whether node-voltage equations are polar form, 
             if False, these equations are rectangular form.
         
     Returns:

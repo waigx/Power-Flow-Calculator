@@ -23,7 +23,7 @@ def newtonRaphson( Y , S , UPri , UAccu , accu , echoLevel=1 , maxIteration=99 ,
     B = Y.imag
     P = S.real
     Q = S.imag
-    
+
     U = np.matrix( [np.array(UPri.real.flat),np.array(UPri.imag.flat)] ).T
     
     iterationTimes=0
