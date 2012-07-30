@@ -16,17 +16,26 @@ import numpy as np
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-def testCal():
-	a = np.mat ( [ [1,2+3j], [3,5] ], dtype=complex )
-	return a.I
-
 class MainPage(webapp2.RequestHandler):
-	def get(self):
-		
-		index = jinja_environment.get_template('index.html')
-		
-		self.response.headers['Content-Type'] = 'text/html'
-		self.response.out.write(index.render())
+    def get(self):
+        
+        index = jinja_environment.get_template('pages/index.html')
 
-app = webapp2.WSGIApplication(	[( '/' , MainPage )],
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render())
+
+class MainPageM(webapp2.RequestHandler):
+    def get(self):
+        
+        index = jinja_environment.get_template('pages/m/index.html')
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render())
+
+class MainPagem(webapp2.RequestHandler):
+    def get(self):
+        
+        self.redirect('/m/')
+app = webapp2.WSGIApplication([ (   '/'     ,MainPage   ),
+                                (   '/m'    ,MainPagem  ),
+                                (   '/m/'   ,MainPageM  )],
 								debug=True )
