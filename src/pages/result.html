@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>About Power Flow Calculator</title>
+<title>Power Flow Calculator</title>
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/favicon.ico">
 <style type="text/css">
@@ -129,6 +129,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 }
 -->
 </style>
+
 </head>
 
 <body>
@@ -154,39 +155,29 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
     </ul>
   </div>
   <div class="content">
-  	<p>
-    	<font size="+4" >P</font>ower Flow Calculator is a tiny project that designed to calculate the power flow of power system.
-    </p>
-    <p>
-    	By leavaging a great python package called numpy, mathematical/matrix process became easier and faster. And yes, the project was developed by python then deployed on Googe App Engine.
-    </p>
-    <p>
-    	All contents ( except the mobile edition ) were available under <a href="http://www.mozilla.org/MPL/2.0/">Mozilla Public LicenseVersion 2.0</a>, please check source code <a href="https://github.com/waigx/Power-Flow-Calculator">here</a>.
-    </p>
-    
-    <h2>To-Do List</h2>
-    <ul>
-    	<li>Finish the project;</li>
-        <li>Mobile edition;</li>
-        <li>Project document</li>
-    </ul>
-  <hr />
-  <div id="disqus_thread" style="width:95%; margin: 0 auto"> </div>
-		<script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'powerflowcal'; // required: replace example with your forum shortname
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments.</a></noscript>
-	</div>
+    <div id="result" style="width:95%; margin: 0 auto">
+   		<hr />
+   		<p>Result:</p>
+   		{{ result }}
+    </div>
+    <div id="result" style="width:95%; margin: 0 auto">
+    	{% if echoLevel>0 %}
+    		<hr />
+    		<p>Debug information:</p>
+    		<textarea name="debuginfo" readonly="readonly" rows="10" style="width:100%">
+    			{{ output }}
+    		</textarea>
+    	{% endif %}
+    </div>
+    <div id="timeuseage" style="width:95%; margin: 0 auto">
+   		<hr />
+   		<p>Time Useage:
+   			<b>{{ timeUseage }} seconds.</b>
+   		</p>
+    </div>
+  </div>
   <div class="footer">
-<hr />
+  		<hr />
   		<table width="100%">
 			<tr valign="top">
 				<td align="left" style="font-size:smaller; font-family:'Times New Roman', Times, serif">

@@ -14,6 +14,8 @@ Last updated on 2012-7-11
 import numpy as np
 import core.newtonRaphson as nr
 
+a = np.matrix("[1+2j,3+4j;1+2j,3+5j]")
+print a/2
 
 Y=np.matrix([[  6.250-18.750j   ,-5.000+15.000j ,-1.250+3.750j  ,0              ,0              ],
              [  -5.000+15.000j  ,10.834-32.500j ,-1.667+5.000j  ,-1.667+5.000j  ,-2.500+7.500j  ],

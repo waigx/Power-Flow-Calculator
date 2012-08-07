@@ -155,25 +155,29 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
     </ul>
   </div>
   <div class="content">
-    <h1>Notice</h1>
-    <p>This is still an internal alpha project.</p>
-    <form name="form1" method="post" action="">
-      <label for="textarea"></label>
-      <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea>
-    </form>
-    <p>&nbsp;</p>
-    <form name="form2" method="post" action="">
-      <input type="submit" name="button" id="button" value="Calculate">
-    </form>
-    <p>&nbsp;</p>
-    
+  	<div id="result" style="width:95%; margin: 0 auto">
+	    <h1>Notice</h1>
+	    <p>This is still an internal alpha project.</p>
+	    <hr />
+	    <form name="dataSheet" method="post" action="/result">
+	 		<div>Y:<textarea name="Y" rows="4" style="width:100%"></textarea></div>
+			<div>S:<textarea name="S" rows="4" style="width:100%"></textarea></div>
+			<div>UPri:<textarea name="UPri" rows="4" style="width:100%"></textarea></div>
+			<div>UAcc:<textarea name="UAcc" rows="4" style="width:100%"></textarea></div>
+			<div>accu: <input type="text" name="accu" value="0.00001" /></div>
+			<div>echoLevel: <input type="text" name="echoLevel" value="4" /></div>
+			<div>maxIteration: <input type="text" name="maxIteration" value="99" /></div>
+			<hr />
+			<div align="right"><input type="submit" name="button" id="button" value="Calculate"></div>
+	    </form>
+    </div>
   </div>
   <div class="footer">
   		<hr />
   		<table width="100%">
 			<tr valign="top">
 				<td align="left" style="font-size:smaller; font-family:'Times New Roman', Times, serif">
-                	<a href="http://igorw.org">Igor Wang</a><br />Version: 0.0.0, Latest update: 7/29/2012
+                	<a href="http://igorw.org">Igor Wang</a><br />Version: 0.0.0, Latest update: 8/1/2012
                 </td>
 				<td align="right" valign="middle">
 					<img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" 
