@@ -10,16 +10,20 @@
 </head>
 
 <body>
+{% if Language==0 %}
 	<div id="header">
         <div class="nav">
         	<ul>
                 <li><a href="/">Desktop View</a></li>
-                <li><a href="#">中文</a></li>
+                <li><a href="./?cn">中文</a></li>
                 <li><a href="/m/about/">About</a></li>
             </ul>
         </div>
         <div class="logo">
-        	<h1><a href="/m/" style="text-decoration: none">Power Flow Calculator Mobile</a></h1>
+	        <h1>
+	        	<font size="+2"><a href="/m/" style="text-decoration: none">Power Flow Calculator </a></font>
+	        	<font size="+0" color="grey">Mobile</font>
+	        </h1>
         </div>
     </div>
     <div class="clear"></div>
@@ -31,5 +35,34 @@
         	<p><a href="http://igorw.org">Igor Wang</a>, Powered by Google App Engine<br />
         	Version: {{ Version }}, Latest update: {{ LastUpdate }}</p>
         </div>
+{% endif %}        
+
+{% if Language==1 %}
+	<div id="header">
+        <div class="nav">
+        	<ul>
+                <li><a href="/">桌面版本</a></li>
+                <li><a href="./?en">English</a></li>
+                <li><a href="/m/about/">关于</a></li>
+            </ul>
+        </div>
+        <div class="logo">
+	        <h1>
+	        	<font size="+2"><a href="/m/" style="text-decoration: none">Power Flow Calculator </a></font>
+	        	<font size="+0" color="grey">移动版</font>
+	        </h1>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <h2>注意：</h2>
+    <p>项目现在仍处于Alpha状态。</p>
+    <div class="right"><a href="#">更多... &raquo;</a></div>
+    <div class="clear"></div>
+    <div class="nav2">
+        	<p><a href="http://igorw.org">Igor Wang</a>, Powered by Google App Engine<br />
+        	版本: {{ Version }}, 最后更新于: {{ LastUpdate }}</p>
+    </div>
+{% endif %} 
+
 </body>
 </html>

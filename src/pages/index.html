@@ -133,7 +133,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 </head>
 
 <body>
-
+{% if Language==0 %}
 <div class="container">
   <div class="header">
   		<br />
@@ -142,8 +142,8 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
   </div>
   <div class="sidebar1">
     <ul class="nav">
-      <li><a href="#">中文</a></li>
-      	<p style="font-size:smaller">Coming soon...</p>
+      <li><a href="./?cn">中文</a></li>
+      	<p style="font-size:smaller">中文版的潮流计算器。</p>
       <li><a href="/help/">Help</a></li>
       	<p style="font-size:smaller">Get start in a few minutes.</p>
       <li><a href="/m/">Mobile Edition</a></li>
@@ -188,6 +188,68 @@ alt="Powered by Google App Engine" />
 			</tr>
 		</table>
    </div>
-  <!-- end .container --></div>
+</div>
+{% endif %}
+
+{% if Language==1 %}
+<div class="container">
+  <div class="header">
+  		<br />
+  		<p>
+  			<a href="/" style="text-decoration:none"><font size="+3" >Power Flow Calculator</font></a>
+  			<font size="+0" color="grey"><br />潮流计算器</font>
+  		</p>
+        <br />
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="./?en">English</a></li>
+      	<p style="font-size:smaller">PFC in English.</p>
+      <li><a href="/help/">帮助</a></li>
+      	<p style="font-size:smaller">几分钟内学会使用PFC。</p>
+      <li><a href="/m/">移动版本</a></li>
+      	<p style="font-size:smaller">专为移动设备优化的PFC。</p>
+      <li><a href="https://github.com/waigx/Power-Flow-Calculator">源代码</a></li>
+      	<p style="font-size:smaller">PFC的源代码被托管在GitHub上，快去看看吧。</p>
+      <li><a href="/about/">关于</a></li>
+      	<p style="font-size:smaller">关于PFC的简单介绍。</p>
+      <li><a href="mailto:igor@igorw.org">联系我</a></li>
+      	<p style="font-size:smaller">有问题？请发送邮件到: igor@igorw.org</p>
+    </ul>
+  </div>
+  <div class="content">
+  	<div id="result" style="width:95%; margin: 0 auto">
+	    <h1>注意！</h1>
+	    <p>项目现在仍处于Alpha状态。</p>
+	    <hr />
+	    <form name="dataSheet" method="post" action="/result">
+	 		<div>Y:<textarea name="Y" rows="4" style="width:100%"></textarea></div>
+			<div>S:<textarea name="S" rows="4" style="width:100%"></textarea></div>
+			<div>UPri:<textarea name="UPri" rows="4" style="width:100%"></textarea></div>
+			<div>UAcc:<textarea name="UAcc" rows="4" style="width:100%"></textarea></div>
+			<div>accu: <input type="text" name="accu" value="0.00001" /></div>
+			<div>echoLevel: <input type="text" name="echoLevel" value="4" /></div>
+			<div>maxIteration: <input type="text" name="maxIteration" value="99" /></div>
+			<hr />
+			<div align="right"><input type="submit" name="button" id="button" value="Calculate"></div>
+	    </form>
+    </div>
+  </div>
+  <div class="footer">
+  		<hr />
+  		<table width="100%">
+			<tr valign="top">
+				<td align="left" style="font-size:smaller; font-family:'Times New Roman', Times, serif">
+                	<a href="http://igorw.org">Igor Wang</a><br />版本号: {{ Version }}, 最后更新于: {{ LastUpdate }}
+                </td>
+				<td align="right" valign="middle">
+					<img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" 
+alt="Powered by Google App Engine" />
+				</td>
+			</tr>
+		</table>
+   </div>
+</div>
+{% endif %}
 </body>
 </html>

@@ -10,16 +10,21 @@
 </head>
 
 <body>
+
+{% if Language==0 %}
 	<div id="header">
         <div class="nav">
         	<ul>
                 <li><a href="/">Desktop View</a></li>
-                <li><a href="#">中文</a></li>
+                <li><a href="./?cn">中文</a></li>
                 <li><a href="/m/about/">About</a></li>
             </ul>
         </div>
         <div class="logo">
-        	<h1><a href="/m/" style="text-decoration: none">Power Flow Calculator Mobile</a></h1>
+	        <h1>
+	        	<font size="+2"><a href="/m/" style="text-decoration: none">Power Flow Calculator </a></font>
+	        	<font size="+0" color="grey">Mobile</font>
+	        </h1>
         </div>
     </div>
     <div class="clear"></div>
@@ -42,5 +47,46 @@
 			<p><a href="http://igorw.org">Igor Wang</a>, Powered by Google App Engine<br />
 			Version: {{ Version }}, Latest update: {{ LastUpdate }}</p>
     </div>
+{% endif %}
+
+{% if Language==1 %}
+	<div id="header">
+        <div class="nav">
+        	<ul>
+                <li><a href="/">桌面版本</a></li>
+                <li><a href="./?en">English</a></li>
+                <li><a href="/m/about/">关于</a></li>
+            </ul>
+        </div>
+        <div class="logo">
+	        <h1>
+	        	<font size="+2"><a href="/m/" style="text-decoration: none">Power Flow Calculator </a></font>
+	        	<font size="+0" color="grey">移动版</font>
+	        </h1>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <h2>关于</h2>
+    <p>
+    	<font size="+2" >潮</font>流计算器 ( Power Flow Calculator ) 是一个开源的网页版小程序，用来计算简单电力系统的潮流。
+    </p>
+    <p>
+    	感谢 numpy 包，它让数学/矩阵处理变得既快又简单。潮流计算器用 python 编写并部署在 Google App Engine 上面。
+    </p>
+    <p>
+    	除了移动版的网页外的所有代码都能从<a href="https://github.com/waigx/Power-Flow-Calculator">这里</a>获取到，它们在<a href="http://www.mozilla.org/MPL/2.0/">Mozilla Public LicenseVersion 2.0</a>许可证下发布。
+    </p>
+    <p>移动版本包含来自于 <a href="http://www.mobifreaks.com">Mobifreaks.com</a>的模板. 请在<a href="http://mobifreaks.com/license/">此处</a>查看该模板的使用许可。</p>
+    <h2>PFC的评论：</h2>
+    <br />
+    <script type="text/javascript" src="http://powerflowcal.disqus.com/combination_widget.js?num_items=5&hide_mods=0&color=grey&default_tab=recent&excerpt_length=200"></script>
+    </div>
+    <div class="clear"></div>
+    <div class="nav2">
+        	<p><a href="http://igorw.org">Igor Wang</a>, Powered by Google App Engine<br />
+        	版本: {{ Version }}, 最后更新于: {{ LastUpdate }}</p>
+    </div>
+{% endif %}
+
 </body>
 </html>
