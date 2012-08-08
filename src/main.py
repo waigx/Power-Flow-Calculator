@@ -12,12 +12,16 @@ import webapp2
 import jinja2
 import os
 import core.newtonRaphson as nr
-import datetime
-import cgi
+import time
 import numpy as np
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+pageInfo = {
+    'Version'       :'0.0.0 (Alpha)'    ,
+    'LastUpdate'    :'Aug. 8, 2012'     ,
+}
 
 def isMobileDevice( ua ):
     isM = False
@@ -38,16 +42,17 @@ class MainPage(webapp2.RequestHandler):
         #   self.redirect('/m/')
         
         index = jinja_environment.get_template('pages/index.html')
-        
+
         self.response.headers['Content-Type'] = 'text/html'
-        self.response.out.write(index.render())
+        self.response.out.write(index.render( pageInfo ))
 
 class MainPageM(webapp2.RequestHandler):
     def get(self):
         
         index = jinja_environment.get_template('pages/m/index.html')
+                
         self.response.headers['Content-Type'] = 'text/html'
-        self.response.out.write(index.render())
+        self.response.out.write(index.render( pageInfo ))
 
 class MainPagem(webapp2.RequestHandler):
     def get(self):
@@ -56,7 +61,7 @@ class MainPagem(webapp2.RequestHandler):
 
 class ReturnResult(webapp2.RequestHandler):
     def post(self):
-        currentTime = datetime.datetime.now()
+        currentTime = time.time()
         
         resultPage = jinja_environment.get_template('pages/result.html')
         self.response.headers['Content-Type'] = 'text/html'
@@ -81,21 +86,41 @@ class ReturnResult(webapp2.RequestHandler):
         
         [result,debuginfo] = powerflowcal(inputData)
         
-        timeUseage = (datetime.datetime.now() - currentTime).total_seconds()
+        timeUseage = time.time() - currentTime
         
         resultObject = {
             'output'        :debuginfo      ,
             'result'        :result         ,
             'echoLevel'     :1              ,
             'timeUseage'    :timeUseage     ,
-        
         }
+        
+        resultObject.update(pageInfo)
         
         self.response.out.write(resultPage.render( resultObject ))
         
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
         
-app = webapp2.WSGIApplication([ (   '/'         ,MainPage       ),
-                                (   '/result'   ,ReturnResult   ),
-                                (   '/m'        ,MainPagem      ),
-                                (   '/m/'       ,MainPageM      )],
+        index = jinja_environment.get_template('pages/about.html')
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render( pageInfo ))
+
+class AboutPageM(webapp2.RequestHandler):
+    def get(self):
+        
+        index = jinja_environment.get_template('pages/m/about.html')
+
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render( pageInfo ))
+        
+app = webapp2.WSGIApplication([ (   '/'             ,MainPage           ),
+                                (   '/result'       ,ReturnResult       ),
+                                (   '/about/'       ,AboutPage          ),
+                                (   '/result'       ,ReturnResult       ),
+                                (   '/m'            ,MainPagem          ),
+                                (   '/m/'           ,MainPageM          ),
+                                (   '/m/about/'     ,AboutPageM         )],
 								debug=True )
