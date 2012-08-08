@@ -7,6 +7,9 @@ threadsafe: true
 handlers:
 - url: /m/css/
   static_dir: pages/m/css/
+- url: /favicon.ico
+  static_files: public/favicon.ico
+  upload: public/favicon.ico
 - url: /.*
   script: main.app
 

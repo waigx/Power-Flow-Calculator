@@ -107,6 +107,14 @@ class AboutPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.out.write(index.render( pageInfo ))
 
+class HelpPage(webapp2.RequestHandler):
+    def get(self):
+        
+        index = jinja_environment.get_template('pages/help.html')
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render( pageInfo ))
+
 class AboutPageM(webapp2.RequestHandler):
     def get(self):
         
@@ -119,7 +127,7 @@ class AboutPageM(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([ (   '/'             ,MainPage           ),
                                 (   '/result'       ,ReturnResult       ),
                                 (   '/about/'       ,AboutPage          ),
-                                (   '/result'       ,ReturnResult       ),
+                                (   '/help/'        ,HelpPage           ),
                                 (   '/m'            ,MainPagem          ),
                                 (   '/m/'           ,MainPageM          ),
                                 (   '/m/about/'     ,AboutPageM         )],
