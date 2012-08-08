@@ -33,7 +33,7 @@ def languageChanged( request ):
         Language = 1
     
     pageInfo.update({
-    'Language'    :Language             ,
+    'Language'       :Language          ,
     })
     
         
@@ -156,17 +156,33 @@ class AboutPageM(webapp2.RequestHandler):
             languageChanged(self.request)
             self.redirect(self.request.path)
         
-        index = jinja_environment.get_template('pages/m/about.html')
+        index = jinja_environment.get_template('pages/404.html')
 
         
         self.response.headers['Content-Type'] = 'text/html'
         self.response.out.write(index.render( pageInfo ))
+     
+class PageNotFound(webapp2.RequestHandler):
+    def get(self):
+        if  self.request.path[-1] != '/':
+            self.redirect(self.request.path+"/")
         
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)
+        
+        index = jinja_environment.get_template('pages/404.html')
+
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render( pageInfo ))
+
 app = webapp2.WSGIApplication([ (   '/'             ,MainPage           ),
-                                (   '/result'       ,ReturnResult       ),
+                                (   '/result/'      ,ReturnResult       ),
                                 (   '/about/'       ,AboutPage          ),
                                 (   '/help/'        ,HelpPage           ),
                                 (   '/m'            ,MainPagem          ),
                                 (   '/m/'           ,MainPageM          ),
-                                (   '/m/about/'     ,AboutPageM         )],
+                                (   '/m/about/'     ,AboutPageM         ),
+                                (   '/.*'           ,PageNotFound       )],
 								debug=True )
