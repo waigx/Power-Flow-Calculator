@@ -156,7 +156,7 @@ class AboutPageM(webapp2.RequestHandler):
             languageChanged(self.request)
             self.redirect(self.request.path)
         
-        index = jinja_environment.get_template('pages/404.html')
+        index = jinja_environment.get_template('pages/m/about.html')
 
         
         self.response.headers['Content-Type'] = 'text/html'

@@ -10,6 +10,12 @@ handlers:
 - url: /favicon.ico
   static_files: public/favicon.ico
   upload: public/favicon.ico
+- url: /sitemap.xml
+  static_files: public/sitemap.xml
+  upload: public/sitemap.xml
+- url: /google033845426ee4b7e7.html
+  static_files: public/google033845426ee4b7e7.html
+  upload: public/google033845426ee4b7e7.html
 - url: /.*
   script: main.app
 
