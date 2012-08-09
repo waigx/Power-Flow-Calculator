@@ -15,14 +15,28 @@ import core.newtonRaphson as nr
 import time
 import numpy as np
 
+Language = 0
+
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 pageInfo = {
     'Version'       :'0.0.0 (Alpha)'    ,
     'LastUpdate'    :'Aug. 8, 2012'     ,
+    'Language'      :Language           ,
 }
 
+def languageChanged( request ):
+    if request.query_string == 'en':
+        Language = 0
+    if request.query_string == 'cn':
+        Language = 1
+    
+    pageInfo.update({
+    'Language'       :Language          ,
+    })
+    
+        
 def isMobileDevice( ua ):
     isM = False
     if 'Mobile' in ua:
@@ -40,6 +54,10 @@ class MainPage(webapp2.RequestHandler):
         
         #if isMobileDevice(str(self.request.headers['User-Agent'])):
         #   self.redirect('/m/')
+                
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)  
         
         index = jinja_environment.get_template('pages/index.html')
 
@@ -48,6 +66,10 @@ class MainPage(webapp2.RequestHandler):
 
 class MainPageM(webapp2.RequestHandler):
     def get(self):
+        
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)        
         
         index = jinja_environment.get_template('pages/m/index.html')
                 
@@ -62,6 +84,10 @@ class MainPagem(webapp2.RequestHandler):
 class ReturnResult(webapp2.RequestHandler):
     def post(self):
         currentTime = time.time()
+        
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)
         
         resultPage = jinja_environment.get_template('pages/result.html')
         self.response.headers['Content-Type'] = 'text/html'
@@ -102,6 +128,10 @@ class ReturnResult(webapp2.RequestHandler):
 class AboutPage(webapp2.RequestHandler):
     def get(self):
         
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)
+        
         index = jinja_environment.get_template('pages/about.html')
         
         self.response.headers['Content-Type'] = 'text/html'
@@ -109,6 +139,10 @@ class AboutPage(webapp2.RequestHandler):
 
 class HelpPage(webapp2.RequestHandler):
     def get(self):
+        
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)
         
         index = jinja_environment.get_template('pages/help.html')
         
@@ -118,17 +152,37 @@ class HelpPage(webapp2.RequestHandler):
 class AboutPageM(webapp2.RequestHandler):
     def get(self):
         
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)
+        
         index = jinja_environment.get_template('pages/m/about.html')
 
         
         self.response.headers['Content-Type'] = 'text/html'
         self.response.out.write(index.render( pageInfo ))
+     
+class PageNotFound(webapp2.RequestHandler):
+    def get(self):
+        if  self.request.path[-1] != '/':
+            self.redirect(self.request.path+"/")
         
+        if self.request.query_string:
+            languageChanged(self.request)
+            self.redirect(self.request.path)
+        
+        index = jinja_environment.get_template('pages/404.html')
+
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(index.render( pageInfo ))
+
 app = webapp2.WSGIApplication([ (   '/'             ,MainPage           ),
-                                (   '/result'       ,ReturnResult       ),
+                                (   '/result/'      ,ReturnResult       ),
                                 (   '/about/'       ,AboutPage          ),
                                 (   '/help/'        ,HelpPage           ),
                                 (   '/m'            ,MainPagem          ),
                                 (   '/m/'           ,MainPageM          ),
-                                (   '/m/about/'     ,AboutPageM         )],
+                                (   '/m/about/'     ,AboutPageM         ),
+                                (   '/.*'           ,PageNotFound       )],
 								debug=True )
